@@ -1,9 +1,11 @@
+{% load static %}
 <!DOCTYPE>
 <html>
 <head>
   <title>Dream Cafe</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
   <link
     rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -11,17 +13,35 @@
     crossorigin="anonymous"
   >
 </head>
-<body>
-<nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand">Dream Cafe</a>
-  <form class="form-inline">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </form>
-</nav>
+<body class="body">
 
-<h1>Write Your First Heading</h1>
-<p>Write Your First Paragraph.</p>
+<div class="container-fluid">
+  <nav class="navbar row navbar-style navbar-light">
+    <a class="navbar-brand font-weight-bolder mr-auto" style="color: #989898 !important;" href="{% url 'home' %}">Dream Cafe</a>
+    {% if user.is_authenticated %}
+    <a class="btn btn-outline-primary my-2 my-sm-0 mr-lg-3" type="login" href="{% url 'pizzaList' %}">Pizza List</a>
+    <a class="btn btn-outline-danger my-2 my-sm-0" type="login" href="{% url 'logout' %}">Logout</a>
+    {% else %}
+    <a class="btn btn-outline-success my-2 my-sm-0" type="login" href="{% url 'login' %}">Login</a>
+    {% endif %}
+  </nav>
+</div>
+
+{% if request.resolver_match.url_name == 'home' %}
+<div class="container intro">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <h1 class="h1">Welcome to Dream Cafe</h1>
+      {% if user.is_authenticated %}
+      <h2>username: <span class="text-danger">{{user}}</span></h2>
+      {% else %}
+      <h2>Please login to see all pizza list !</h2>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endif %}
+
 {% block content %}
 
 {% endblock content %}

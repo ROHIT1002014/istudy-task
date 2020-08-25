@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from .models import PizzaInfo
 
 
 def loginView(request):
@@ -14,15 +15,24 @@ def loginView(request):
     user = authenticate(username=username, password=password)
     if user is not None:
       login(request, user)
-      return redirect('home')
+      return redirect('pizzaList')
     else:
       return render(request, 'login.html')
   return render(request, 'login.html')
 
 def logoutView(request):
   logout(request)
-  return redirect('logout')
+  return redirect('home')
+
+def homePageView(request):
+  return render(request, 'home.html')
 
 @login_required(login_url='login/')
-def homePageView(request):
-  return render(request, 'home.html', {'message': 'Login fail.'})
+def pizzaListView(request):
+  pizzaList = PizzaInfo.objects.all()
+  return render(request, 'pizzaList.html', {'pizzaList': pizzaList })
+
+@login_required(login_url='login/')
+def pizzaDetailView(request, pk):
+  pizzaInfo = PizzaInfo.objects.filter(id = pk).get()
+  return render(request, 'pizzaInfo.html', {'pizzaInfo': pizzaInfo })

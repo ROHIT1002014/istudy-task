@@ -1,0 +1,46 @@
+.body {
+  background: #0d1521;
+  font-family: tahoma;
+  color: #989898;
+}
+
+.navbar-style {
+  background-color: rgb(70, 52, 52) !important;
+  padding: 20px !important;
+  box-shadow: 5px 10px 10px #355a2e;
+}
+
+input {
+  width: 70%;
+  padding: 20px !important;
+  background:#252c35 !important;
+  border: 0 !important;
+  float: left !important;
+  font-size: 20px !important;
+  color: #989898 !important;
+}
+
+.pizza-list {
+  margin-top: 50px;
+}
+
+.pizza-list .card-body {
+  background-color: #7b868f;
+}
+
+tr {
+  text-decoration: none;
+  color: rgb(216, 209, 183);
+}
+
+tr td a {
+  color:rgb(216, 209, 183);
+}
+
+.intro {
+  margin-top: 15%;
+}
+.card {
+  background-color: #7b868f !important;
+  color:rgb(216, 209, 183);
+}

@@ -1,0 +1,18 @@
+{% extends 'home.html' %}
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <div class="card">
+        <img src="{{ pizzaInfo.image.url }}" class="card-img-top" alt="pizza image">
+        <div class="card-body">
+          <h5 class="card-title">{{ pizzaInfo.pizzaName }}</h5>
+          <p class="card-text">{{ pizzaInfo.description }}</p>
+          <p class="badge p-3 badge-dark mr-5">{{ pizzaInfo.price }}</p>
+          <a href="{% url 'pizzaList' %}" class="badge ml-5 p-3 badge-dark">Back</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
