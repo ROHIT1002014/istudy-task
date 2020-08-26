@@ -5,7 +5,6 @@ env
 #*.sqlite3 demo db
 *.env
 *.venv
-**db.sqlite3
 # Accept these files in the repository
 !.gitignore
 !.travis.yml
